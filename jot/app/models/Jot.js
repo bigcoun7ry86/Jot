@@ -1,30 +1,53 @@
+// @ts-nocheck
 import { generateId } from "../utils/GenerateId.js";
 
 
 
 export class Jot {
   constructor(data) {
-    this.Id = generateId()
+    this.Id = data.Id || generateId()
     this.color = data.color
     this.title = data.title
-    this.body = data.body
-    this.createdAt = data.createdAt
-    this.updatedAt = data.createdAt
+    this.body = data.body || ""
+    this.jotNumber = this.title + this.color
+    this.updatedAt = data.updatedAt ? new Date(data.updatedAt) : new Date()
 
 
   }
   get NotesTemplate() {
     return /*html*/ `
-<div class="col-md-6">
-          <h1>${this.title}</h1>
-          <p> ${this.body}</p>
-          <label for="jumble-body"></label>
-          <div>
-          <textarea class="form-control" name="body" id=""></textarea>
-          </div>
-          <button onclick="" class="btn btn-info w-100">Submit</button>
-            </div>
+    
+    <div class="col">
+    <span>Select a Jot</span>
+    <div class="btn" role="button" onclick= "app.JotController.setActiveJot('${this.Id}')">
+  <li >${this.color}-${this.title}-${this.body}</li></div>
+  </div>
+  </div>
+  
+  
+            
 `
+
+  }
+  static get placeHolderActiveJot() {
+    return /*html*/``
+  }
+  get ActiveJotTemplate() {
+    return /*html*/ `
+
+      <div class="row d-flex">
+      <form class="row" onsubmit="app.JotController.saveJot()">
+        <h1>Jot</h1>
+        <textarea class="col-md-6 border border-dark" id="active-jot">${this.color}-${this.title}-${this.body}</textarea>
+        <button onclick="app.JotController.deleteJot()">Delete</button><button onclick="app.JotController.saveJot()">Save</button>
+      </div>
+      <div>${this.updatedAt}</div>
+    </form>
+    `
+  }
+  get updatedAtDate() {
+    // @ts-ignore
+    return this.updatedAt.toLocaleTimeString('en-us', { year: 'numeric', month: 'short', day: 'numeric', timeStyle: 'medium' })
 
   }
 }

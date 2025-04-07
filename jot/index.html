@@ -24,6 +24,54 @@
   </header>
 
   <main>
+    <!-- <div>
+      <h2>${this.title}</h2>
+      <p>${this.color}</p>
+    </div>
+    <section class="row d-flex">
+      <form class="row" onsubmit="app.JotController.saveJot()">
+        <h1>Jot</h1>
+        <textarea class="col-md-6 border border-dark" id="active-jot">Note</textarea>
+        <button type="button" onclick="app.JotController.deleteJot()">Delete</button><button
+          onclick="app.JotController.saveJot" type="submit">Save</button>
+    </section>
+    </form> -->
+    <!-- Jot note area -->
+
+    <body class="row">
+      <div>
+        <h1>Jots</h1>
+        <span id="jot-count">0</span>
+      </div>
+      <section id="jot-list"></section>
+      <section id="active-jot"></section> <!-- New section for active jot -->
+    </body>
+
+    <!-- Jot create -->
+
+    <form class="row" onsubmit="app.JotController.createJot()">
+      <div class="input-group">
+        <select name="form" name="color" id="color-picker">
+          <option value="🟥 Red">🟥 Red</option>
+          <option value="🟨 Yellow">🟨 Yellow</option>
+          <option value="🟩 Green">🟩 Green</option>
+          <option value="🟦 Blue">🟦 Blue</option>
+          <option value="🟪 Purple">🟪 Purple</option>
+        </select>
+      </div>
+      <h4 class="text-center"> Jot</h4>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="" placeholder="Name" name="name" required>
+        <label for="name">Title</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="" id="" name="body" required></textarea>
+        <label for="jot-body">Jot</label>
+      </div>
+      <button class="btn btn-warning w-100" onclick="app.JotController.createJot()" type="submit">create <i
+          class=" mdi mdi-arrow-right"></i></button>
+    </form>
+
 
 
   </main>

@@ -18,3 +18,8 @@ main {
   justify-content: start;
   align-items: end;
 }
+
+box-size {
+  min-height: 500px;
+  min-width: 250px;
+}
