@@ -7,9 +7,6 @@ body {
 
 main {
   flex-grow: 1;
-  display: flex;
-  place-content: center;
-  align-items: center;
 }
 
 #pop-toast-container {
@@ -19,7 +16,11 @@ main {
   align-items: end;
 }
 
-box-size {
+.box-size {
   min-height: 500px;
   min-width: 250px;
+}
+
+textarea {
+  min-width: 100%;
 }

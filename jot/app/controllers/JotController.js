@@ -7,12 +7,15 @@ import { getFormData } from "../utils/FormHandler.js";
 
 export class JotController {
   constructor() {
-    this.drawJot()
-    jotServices.loadJot()
-    // AppState.on('Jot', this.drawJot)
+    AppState.on('Jots', this.drawJots)
     AppState.on('activeJot', this.drawActiveJot)
+    this.drawJots()
+    this.drawActiveJot()
+    jotServices.loadJots()
+
   }
-  drawJot() {
+
+  drawJots() {
     console.log('Jot')
     const Jot = AppState.Jots
     let jotList = ''
@@ -24,13 +27,9 @@ export class JotController {
   }
   setActiveJot(jotId) {
     console.log('Jots!', jotId)
-    const selectedJots = AppState.Jots.find(Jot => Jot.Id == jotId)
-    AppState.activeJot = selectedJots
     jotServices.setActiveJot(jotId)
-    console.log()
-
-
   }
+
   drawActiveJot() {
     console.log('✏, active jot')
     const activeJot = AppState.activeJot
@@ -40,31 +39,41 @@ export class JotController {
       activeElem.innerHTML = activeContent
     }
     else
-      activeElem.innerHTML = ''
+      activeElem.innerHTML = '<div>SELECT A JOT</div>'
   }
 
-  createJot(jotData) {
-    const jot = new Jot(jotData)
-    AppState.Jots.push(jotData)
+  createJot() {
+    event.preventDefault()
+    console.log('the form is working?')
+    // TODO get the formData
+    /** @type {HTMLFormElement} */
+    const form = event.target
+    console.log(form)
+    const jotData = getFormData(form)
+    console.log('created', form, jotData)
+    jotServices.createJot(jotData)
+    form.reset()
 
-
+    console.log('the new jot?')
+    // FIXME move this to the service
+    // const jot = new Jot(jotData)
+    // AppState.Jots.push(jotData)
   }
+
   deleteJot(jotID) {
     const confirmed = confirm('Are you sure?')
     console.log("deleted", confirmed)
     if (confirmed == false) return
     jotServices.deleteJot(jotID)
-    jotServices.deleteJot()
-
   }
-  saveJot() {
+
+  updateActiveJot() {
     event.preventDefault()
     console.log('save jot')
     const form = event.target
+    // @ts-ignore
     const newBody = form.body.value
     console.log('new jot', newBody)
-    // @ts-ignore
-    jotServices.saveJot(newBody)
-
+    jotServices.updateActiveJot(newBody)
   }
 }

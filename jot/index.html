@@ -23,7 +23,7 @@
     </nav>
   </header>
 
-  <main>
+  <main class="container-fluid">
     <!-- <div>
       <h2>${this.title}</h2>
       <p>${this.color}</p>
@@ -36,40 +36,54 @@
           onclick="app.JotController.saveJot" type="submit">Save</button>
     </section>
     </form> -->
-    <!-- Jot note area -->
 
-    <body class="row">
-      <div>
-        <h1>Jots</h1>
-        <span id="jot-count">0</span>
+    <!--  Jot count area -->
+    <section class="row mb-3">
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h1>Jots</h1>
+            <span id="jot-count">0</span>
+            <section id="jot-list"></section>
+          </div>
+        </div>
       </div>
-      <section id="jot-list"></section>
-      <section id="active-jot"></section> <!-- New section for active jot -->
-    </body>
+      <!-- New section for active jot -->
+      <section class="col-md-9">
+        <div class="card">
+          <div class="card-body" id="active-jot">
+
+          </div>
+        </div>
+      </section>
+    </section>
+
 
     <!-- Jot create -->
+    <form class="row my-3" onsubmit="app.JotController.createJot()">
+      <div class="col-md-8 m-auto">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="text-center"> Jot</h4>
+            <div class="input-group">
+              <select name="form" name="color" id="color-picker">
+                <option value="🟥 Red">🟥 Red</option>
+                <option value="🟨 Yellow">🟨 Yellow</option>
+                <option value="🟩 Green">🟩 Green</option>
+                <option value="🟦 Blue">🟦 Blue</option>
+                <option value="🟪 Purple">🟪 Purple</option>
+              </select>
+            </div>
+            <div class="form-floating mb-3">
 
-    <form class="row" onsubmit="app.JotController.createJot()">
-      <div class="input-group">
-        <select name="form" name="color" id="color-picker">
-          <option value="🟥 Red">🟥 Red</option>
-          <option value="🟨 Yellow">🟨 Yellow</option>
-          <option value="🟩 Green">🟩 Green</option>
-          <option value="🟦 Blue">🟦 Blue</option>
-          <option value="🟪 Purple">🟪 Purple</option>
-        </select>
+              <input type="text" class="form-control" placeholder="Name" name="name" required minlength="3"
+                maxlength="15">
+              <label for="name">Title</label>
+            </div>
+            <button class="btn btn-warning w-100" type="submit">create <i class=" mdi mdi-arrow-right"></i></button>
+          </div>
+        </div>
       </div>
-      <h4 class="text-center"> Jot</h4>
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="" placeholder="Name" name="name" required>
-        <label for="name">Title</label>
-      </div>
-      <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="" id="" name="body" required></textarea>
-        <label for="jot-body">Jot</label>
-      </div>
-      <button class="btn btn-warning w-100" onclick="app.JotController.createJot()" type="submit">create <i
-          class=" mdi mdi-arrow-right"></i></button>
     </form>
 
 
