@@ -37,9 +37,10 @@ export class Jot {
         <button type="button" onclick="app.JotController.deleteJot()">Delete</button>
         <button type="submit">Save</button>
         <!-- TODO add the createdAt Date and format it -->
-        <div>
+        <div> Save at:
           ${this.updatedAtDate}
         </div>
+        <div> Created at:${this.createdAt}</div>
       </form>
     </div>
     `
@@ -69,7 +70,7 @@ export class Jot {
               <label for="name">Title</label>
             </div>
             <button class="btn btn-warning w-100" type="submit">create <i class=" mdi mdi-arrow-right"></i></button>
-            <div>${this.createdAt}</div>
+            
           </div>
           </div>
         </div>

@@ -32,10 +32,11 @@ export class JotServices {
 
   }
   createJot(jotData) {
+    // How come im not using jot?
     const jot = new Jot(jotData)
-    AppState.Jots.push(jotData)
-    console.log('new jot', jot)
-    AppState.Jots.unshift(jot)
+    AppState.Jots.push(jot)
+    console.log('push jot', jot)
+    console.log('new jot', AppState.Jots)
     this.saveJots()
   }
 
